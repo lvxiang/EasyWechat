@@ -1,6 +1,9 @@
 package org.easywechat.session;
 
 
+import java.util.HashMap;
+
+import org.easywechat.Wechat;
 import org.easywechat.model.EventMsgModel;
 import org.easywechat.model.TextMsgModel;
 import org.easywechat.model.WechatMsgModel;
@@ -24,6 +27,7 @@ public class SessionProcessor {
 				SessionChain chain = template.getChain(id);
 				SessionModel entry = chain.getEnter();
 				if(entry != null && entry.matches(model)) {
+					entry.setData(new HashMap<Object, Object>());
 					switch(model.getType()) {
 					case TEXT: 
 						return executeTextMsg(openid, chain, entry, model);
@@ -64,14 +68,18 @@ public class SessionProcessor {
 		String result    = "";
 		if(className != null) {
 			SessionHandler handler = (SessionHandler) Class.forName(className).newInstance();
-			result = handler.handle(openid, model);
+			result = handler.handle(openid, model, session.getData());
 		} else {
 			result = ((TextMsgModel) model).getContent();
 		}
 		
 		Condition cond = session.getCondition(result);
 		if(cond != null) {
-			return new SessionProcessResult(cond.getResult(), chain.getSession(cond.getTarget()));
+			if(cond.isNeedResult()) 
+				cond.setResult((String) session.getData().get(Wechat.KEY_RESULT_MSG));
+			SessionModel next = chain.getSession(cond.getTarget());
+			if(next != null) next.setData(session.getData());
+			return new SessionProcessResult(cond.getResult(), next);
 		}
 		return null;
 	}
@@ -82,13 +90,17 @@ public class SessionProcessor {
 		String result    = "";
 		if(className != null) {
 			SessionHandler handler = (SessionHandler) Class.forName(className).newInstance();
-			result = handler.handle(openid, model);
+			result = handler.handle(openid, model, session.getData());
 		} else {
 			result = ((EventMsgModel) model).getEvent();
 		}
 		Condition cond = session.getCondition(result);
 		if(cond != null) {
-			return new SessionProcessResult(cond.getResult(), chain.getSession(cond.getTarget()));
+			if(cond.isNeedResult()) 
+				cond.setResult((String) session.getData().get(Wechat.KEY_RESULT_MSG));
+			SessionModel next = chain.getSession(cond.getTarget());
+			if(next != null) next.setData(session.getData());
+			return new SessionProcessResult(cond.getResult(), next);
 		}
 		return null;
 	}

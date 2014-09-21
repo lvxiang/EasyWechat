@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.easywechat.Wechat;
 import org.easywechat.model.EventMsgModel;
 import org.easywechat.model.TextMsgModel;
 import org.easywechat.model.WechatMsgModel;
@@ -18,7 +19,9 @@ public class SessionModel implements Cloneable{
 	private Condition mismatch;
 	private Pattern pattern;
 	private boolean enter;
+	private boolean needResult;
 	private SessionChain chain;
+	private Map<Object, Object> data;
 	
 	private long lastUpdate;
 	
@@ -68,6 +71,7 @@ public class SessionModel implements Cloneable{
 	}
 
 	public void addCondition(String value, String target, String result){
+		
 		this.conditions.put(value, new Condition(value, target, result));
 	}
 	
@@ -91,48 +95,20 @@ public class SessionModel implements Cloneable{
 		return this.lastUpdate;
 	}
 	
-	public class Condition{
-		private String value;
-		private String target;
-		private String result;
-		
-		public Condition(String value, String target, String result){
-			this.value  = value;
-			this.target = target;
-			this.result = result;
-		}
-
-		public String getValue() {
-			return value;
-		}
-
-		public void setValue(String value) {
-			this.value = value;
-		}
-
-		public String getTarget() {
-			return target;
-		}
-
-		public void setTarget(String target) {
-			this.target = target;
-		}
-
-		public String getResult() {
-			return result;
-		}
-
-		public void setResult(String result) {
-			this.result = result;
-		}
-	}
-	
 	public boolean isEnter() {
 		return enter;
 	}
 
 	public void setEnter(boolean enter) {
 		this.enter = enter;
+	}
+
+	public boolean isNeedResult() {
+		return needResult;
+	}
+
+	public void setNeedResult(boolean needResult) {
+		this.needResult = needResult;
 	}
 
 	public SessionChain getChain() {
@@ -143,6 +119,14 @@ public class SessionModel implements Cloneable{
 		this.chain = chain;
 	}
 
+	protected Map<Object, Object> getData(){
+		return data;
+	}
+
+	protected void setData(Map<Object, Object> data) {
+		this.data = data;
+	}
+	
 	@Override
 	public SessionModel clone(){
 		try {
@@ -171,5 +155,52 @@ public class SessionModel implements Cloneable{
 			}
 		}
 		return false;
+	}
+	
+	public class Condition{
+		private String value;
+		private String target;
+		private String result;
+		private boolean needResult;
+		
+		public Condition(String value, String target, String result){
+			this.setValue(value);
+			this.setTarget(target);
+			this.setResult(result);
+		}
+
+		public String getValue() {
+			return value;
+		}
+
+		public void setValue(String value) {
+			this.value = value;
+		}
+
+		public String getTarget() {
+			return target;
+		}
+
+		public void setTarget(String target) {
+			this.target = target;
+		}
+
+		public String getResult() {
+			return result;
+		}
+
+		public void setResult(String result) {
+			this.result = result;
+			if(result != null && result.equals(Wechat.KEY_RESULT_MSG))
+				this.needResult = true;
+		}
+
+		public boolean isNeedResult() {
+			return needResult;
+		}
+
+		public void setNeedResult(boolean needResult) {
+			this.needResult = needResult;
+		}
 	}
 }

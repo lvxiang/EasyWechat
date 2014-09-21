@@ -3,13 +3,21 @@ package org.easywechat.model;
 public class WechatMsgModel {
 	
 	public static enum MessageType {
-		TEXT, NEWS, EVENT
+		TEXT, NEWS, EVENT, LOCATION,
+		UNKNOWN
 	}
 	
 	public static final String TYPE_TEXT     = "text";
 	public static final String TYPE_LOCATION = "location";
 	public static final String TYPE_EVENT    = "event";
 	public static final String TYPE_NEWS     = "news";
+	
+	public static final String EVENT_SUBSCRIBE   = "subscribe";
+	public static final String EVENT_UNSUBSCRIBE = "unsubscribe";
+	public static final String EVENT_SCAN        = "scan";
+	public static final String EVENT_LOCATION    = "location";
+	public static final String EVENT_CLICK       = "click";
+	public static final String EVENT_VIEW        = "view";
 	
 	protected String toUserName;
 	protected String fromUserName;
@@ -52,6 +60,8 @@ public class WechatMsgModel {
 			case TEXT: return TYPE_TEXT;
 			case NEWS: return TYPE_NEWS;
 			case EVENT: return TYPE_EVENT;
+		default:
+			break;
 		}
 		return null;
 	}

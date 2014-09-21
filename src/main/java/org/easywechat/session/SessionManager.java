@@ -116,6 +116,18 @@ public class SessionManager {
 		return null;
 	}
 	
+	public final boolean sessionExists(String openid){
+		return this.sessions.containsKey(openid);
+	}
+	
+	public final SessionModel getSession(String openid){
+		return this.sessions.get(openid);
+	}
+	
+	public final SessionModel removeSession(String openid){
+		return this.sessions.remove(openid);
+	}
+	
 	private class TimerRunner implements Runnable{
 
 		public void run() {
