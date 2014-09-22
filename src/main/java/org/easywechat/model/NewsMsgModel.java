@@ -1,19 +1,34 @@
 package org.easywechat.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NewsMsgModel extends WechatMsgModel{
 
-	private int articleCount;
+	private int articleCount = 0;
+	private List<Article> articles;
 	
 	public NewsMsgModel(){
 		this.type = MessageType.NEWS;
+		this.articles = new ArrayList<Article>();
 	}
 	
-	public class ArticleModel {
+	public void addArticle(Article article){
+	    this.articles.add(article);
+	}
+	
+	public void addArticle(String title, String desc, String picUrl, String url) {
+	    this.addArticle(new Article(title, desc, picUrl, url));
+	}
+	
+	public class Article {
 		
 		private String title;
 		private String description;
 		private String picUrl;
 		private String url;
+		
+		
 		public String getTitle() {
 			return title;
 		}
