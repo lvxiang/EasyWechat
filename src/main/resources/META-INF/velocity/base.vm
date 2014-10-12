@@ -1,0 +1,11 @@
+<xml>
+	<ToUserName><![CDATA[${model.toUserName}]]></ToUserName>
+	<FromUserName><![CDATA[${model.fromUserName}]]></FromUserName>
+	<CreateTime>${model.createTime}</CreateTime>
+	<MsgType><![CDATA[${model.typeText}]]></MsgType>
+	#if($model.typeText == "text")
+		#parse('META-INF/velocity/text.vm')
+	#elseif($model.typeText == "news")
+		#parse('META-INF/velocity/news.vm')
+	#end
+</xml>
