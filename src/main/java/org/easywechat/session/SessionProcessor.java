@@ -8,6 +8,7 @@ import org.easywechat.model.EventMsgModel;
 import org.easywechat.model.TextMsgModel;
 import org.easywechat.model.WechatMsgModel;
 import org.easywechat.session.SessionModel.Condition;
+import org.jsoup.helper.StringUtil;
 
 public class SessionProcessor {
 
@@ -66,7 +67,7 @@ public class SessionProcessor {
 			SessionModel session, WechatMsgModel model) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		String className = session.getClassName();
 		String result    = "";
-		if(className != null) {
+		if(!StringUtil.isBlank(className)) {
 			SessionHandler handler = (SessionHandler) Class.forName(className).newInstance();
 			result = handler.handle(openid, model, session.getData());
 		} else {
@@ -77,6 +78,7 @@ public class SessionProcessor {
 		if(cond != null) {
 			if(cond.isNeedResult()) 
 				cond.setResult((String) session.getData().get(Wechat.KEY_RESULT_MSG));
+			
 			SessionModel next = chain.getSession(cond.getTarget());
 			if(next != null) next.setData(session.getData());
 			return new SessionProcessResult(cond.getResult(), next);
@@ -127,7 +129,8 @@ public class SessionProcessor {
 		}
 
 		public void setNext(SessionModel next) {
-			this.next = next.clone();
+			if(next != null)
+				this.next = next.clone();
 		}
 	}
 }

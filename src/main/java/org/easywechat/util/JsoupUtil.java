@@ -8,7 +8,7 @@ public class JsoupUtil {
 	public static String getTagContent(Document doc, String tag) {
 		if(doc != null && tag != null) {
 			Elements elems = doc.getElementsByTag(tag);
-			if(elems != null) 
+			if(elems != null && !elems.isEmpty()) 
 				return elems.first().html();
 		}
 		return null;

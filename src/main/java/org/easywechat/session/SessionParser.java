@@ -15,6 +15,7 @@ import org.jsoup.select.Elements;
 public class SessionParser {
 	private static final String TAG_SESSION_CHAIN = "session-chain";
 	private static final String TAG_SESSION       = "session";
+	private static final String TAG_TYPE          = "type";
 	private static final String TAG_MATCH         = "match";
 	private static final String TAG_CLASSNAME     = "classname";
 	private static final String TAG_FUNCTION      = "function";
@@ -65,6 +66,7 @@ public class SessionParser {
 			String id = chain.attr(ATTR_ID);
 			if(StringUtil.isBlank(id))
 				throw new IllegalArgumentException();
+			sessionChain.setId(id);
 			Elements sessions = chain.getElementsByTag(TAG_SESSION);
 			Iterator<Element> iter = sessions.iterator();
 			while(iter.hasNext()) {
@@ -90,17 +92,20 @@ public class SessionParser {
 			if(StringUtil.isBlank(id)) {
 				throw new IllegalArgumentException("model must have id!");
 			} else {
+				model.setId(id);
 				String sessionClass = session.attr(ATTR_CLASS);
 				if(ATTR_ENTER.equals(sessionClass)) {
 					model.setEnter(true);
 				}
 				
+				String type      = getContentByTag(session, TAG_TYPE);
 				String match     = getContentByTag(session, TAG_MATCH);
 				String className = getContentByTag(session, TAG_CLASSNAME);
 				String function  = getContentByTag(session, TAG_FUNCTION);
 				if(StringUtil.isBlank(match)) {
 					throw new IllegalArgumentException("Model must have a match condition!");
 				}
+				model.setType(type);
 				model.setMatch(match);
 				model.setClassName(className);
 				model.setFunction(function);

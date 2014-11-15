@@ -5,7 +5,6 @@ import java.util.List;
 
 public class NewsMsgModel extends WechatMsgModel{
 
-	private int articleCount = 0;
 	private List<Article> articles;
 	
 	public NewsMsgModel(){
@@ -21,6 +20,10 @@ public class NewsMsgModel extends WechatMsgModel{
 	    this.addArticle(new Article(title, desc, picUrl, url));
 	}
 	
+	public int getArticleNum(){
+		return this.articles.size();
+	}
+	
 	public class Article {
 		
 		private String title;
@@ -28,7 +31,12 @@ public class NewsMsgModel extends WechatMsgModel{
 		private String picUrl;
 		private String url;
 		
-		
+		public Article(String title, String desc, String picUrl, String url){
+			this.title = title;
+			this.description = desc;
+			this.picUrl = picUrl;
+			this.url = url;
+		}
 		public String getTitle() {
 			return title;
 		}

@@ -7,10 +7,12 @@
  */
 package org.easywechat;
 
+import java.util.Collection;
+
+import org.easywechat.model.NewsMsgModel;
+import org.easywechat.model.NewsMsgModel.Article;
 import org.easywechat.model.TextMsgModel;
 import org.easywechat.model.WechatMsgModel;
-import org.easywechat.model.WechatMsgModel.MessageType;
-import org.easywechat.util.WechatUtil;
 
 /**
  * 类WechatModelBuilder.java的实现描述：TODO 类实现描述 
@@ -30,19 +32,31 @@ public class WechatModelBuilder {
         return new TextMsgBuilder(new TextMsgModel());
     }
     
-    public TextMsgBuilder createNewsMsg(){
-        
+    public NewsMsgBuilder createNewsMsg(){
+        return new NewsMsgBuilder(new NewsMsgModel());
     }
     
-    public class TextMsgBuilder{
+    private abstract class AbstractMsgBuilder{
+    	protected WechatMsgModel model;
+    	
+    	protected AbstractMsgBuilder(WechatMsgModel model){
+    		this.model = model;
+    	}
+    	
+    	public WechatMsgModel build(){
+    		return model;
+    	}
+    }
+    
+    public class TextMsgBuilder extends AbstractMsgBuilder{
 
-        private WechatMsgModel model;
         
-        private TextMsgBuilder(WechatMsgModel model){
-            this.model = model;
-        }
-        
-        public TextMsgBuilder setFromUserName(String str){
+        protected TextMsgBuilder(WechatMsgModel model) {
+			super(model);
+			// TODO Auto-generated constructor stub
+		}
+
+		public TextMsgBuilder setFromUserName(String str){
             model.setFromUserName(str);
             return this;
         }
@@ -61,15 +75,14 @@ public class WechatModelBuilder {
             ((TextMsgModel) model).setContent(content);
             return this;
         }
+        
     }
     
-    public class NewsMsgBuilder{
+    public class NewsMsgBuilder extends AbstractMsgBuilder{
         
-        private WechatMsgModel model;
-        
-        private NewsMsgBuilder(WechatMsgModel model){
-            this.model = model;
-        }
+        protected NewsMsgBuilder(WechatMsgModel model) {
+			super(model);
+		}
         
         public NewsMsgBuilder setFromUserName(String str){
             model.setFromUserName(str);
@@ -86,14 +99,23 @@ public class WechatModelBuilder {
             return this;
         }
         
-        public NewsMsgBuilder addArticle(){
-            
+        public NewsMsgBuilder addArticle(Article article){
+            ((NewsMsgModel) model).addArticle(article);
             return this;
         }
         
         public NewsMsgBuilder addArticle(String title, String description, String picUrl, String url){
-            
+            ((NewsMsgModel) model).addArticle(title, description, picUrl, url);
             return this;
         }
+        
+        public <T> NewsMsgBuilder each(Collection<T> coll, NewsMsgCallback<? super T> callback) {
+        	for(T t: coll) {
+        		callback.execute(this, t);
+        	}
+        	return this;
+        }
     }
+    
+
 }

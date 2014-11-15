@@ -23,6 +23,7 @@ public class WechatMsgModel {
 	protected String fromUserName;
 	protected String createTime;
 	protected String msgId;
+	protected String typeText;
 	protected MessageType type;
 	
 	public String getToUserName() {

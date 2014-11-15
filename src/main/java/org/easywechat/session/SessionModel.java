@@ -43,7 +43,6 @@ public class SessionModel implements Cloneable{
 
 	public void setType(String type) {
 		this.type = type;
-		pattern = Pattern.compile(type);
 	}
 
 	public String getMatch() {
@@ -52,6 +51,7 @@ public class SessionModel implements Cloneable{
 
 	public void setMatch(String match) {
 		this.match = match;
+		pattern = Pattern.compile(match);
 	}
 
 	public String getClassName() {
