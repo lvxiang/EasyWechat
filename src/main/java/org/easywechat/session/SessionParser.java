@@ -1,9 +1,7 @@
 package org.easywechat.session;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Iterator;
 
 import org.jsoup.Jsoup;
@@ -31,23 +29,26 @@ public class SessionParser {
 	private static final String ATTR_CLASS        = "class";
 	private static final String ATTR_ENTER        = "enter";
 
-	public static SessionTemplate parse(InputStream in) throws IOException {
+	public static SessionTemplate parse(InputStream in, String charset) throws IOException{
 		if(in != null) {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			StringBuilder builder = new StringBuilder();
-			String line = null;
-			while((line = reader.readLine()) != null) 
-				builder.append(line);
-			reader.close();
-			return parse(builder.toString());
+			Document doc = Jsoup.parse(in, charset, "/");
+			return parseDoc(doc);
 		} else
 			throw new NullPointerException();
 	}
 	
 	public static SessionTemplate parse(String content) {
 		if(content != null) {
-			SessionTemplate template = new SessionTemplate();
 			Document doc = Jsoup.parse(content); 
+			return parseDoc(doc);
+		} else {
+			throw new NullPointerException();	
+		}
+	}
+	
+	private static SessionTemplate parseDoc(Document doc){
+		if(doc != null){
+			SessionTemplate template = new SessionTemplate();
 			Elements sessionchains = doc.getElementsByTag(TAG_SESSION_CHAIN);
 			Iterator<Element> iter = sessionchains.iterator();
 			while(iter.hasNext()) {
@@ -55,9 +56,8 @@ public class SessionParser {
 				template.addChain(chain.getId(), chain);
 			}
 			return template;
-		} else {
-			throw new NullPointerException();	
 		}
+		return null;
 	}
 
 	private static SessionChain parseChain(Element chain){

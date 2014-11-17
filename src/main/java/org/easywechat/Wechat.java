@@ -18,11 +18,17 @@ public class Wechat {
 	private static VelocityEngine ve;
 	private static SessionManager sessionManager;
 	
-	public static void initSession(String filename, int expire){
+	/***
+	 * 
+	 * @param filename
+	 * @param charset
+	 * @param expire
+	 */
+	public static void initSession(String filename, String charset, int expire){
 		if(filename != null) {
 			if(sessionManager == null) {
 				InputStream in = Wechat.class.getClassLoader().getResourceAsStream(filename);
-				sessionManager = SessionManager.newInstance(in, expire);
+				sessionManager = SessionManager.newInstance(in, charset, expire);
 				
 			} else {
 				throw new IllegalStateException("A session manager already exists!");

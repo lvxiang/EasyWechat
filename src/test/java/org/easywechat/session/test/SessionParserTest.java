@@ -17,7 +17,7 @@ public class SessionParserTest {
 		InputStream in = this.getClass().getClassLoader().getResourceAsStream("multiple-chain-template.xml");
 		if(in != null) {
 			try {
-				SessionTemplate template = SessionParser.parse(in);
+				SessionTemplate template = SessionParser.parse(in, "UTF-8");
 				Assert.assertNotNull(template);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

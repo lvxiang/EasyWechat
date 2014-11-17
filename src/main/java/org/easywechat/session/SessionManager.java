@@ -10,7 +10,8 @@ import org.easywechat.session.SessionProcessor.SessionProcessResult;
 
 public class SessionManager {
 
-	private static final int DEFAULT_EXPIRE = 300; // 会话默认5分钟过期
+	private static final int    DEFAULT_EXPIRE  = 300; // 会话默认5分钟过期
+	private static final String DEFAULT_CHARSET = "UTF-8";
 	
 	private final Map<String, SessionModel> sessions = 
 			new HashMap<String, SessionModel>();
@@ -20,23 +21,31 @@ public class SessionManager {
 	private Thread runner;
 	
 	private int expire = DEFAULT_EXPIRE;
-
+	
 	public static SessionManager newInstance(String filename) {
-		return newInstance(filename, DEFAULT_EXPIRE);
+		return newInstance(filename, DEFAULT_CHARSET, DEFAULT_EXPIRE);
 	}
 	
-	public static SessionManager newInstance(InputStream in) {
-		return newInstance(in, DEFAULT_EXPIRE);
+	public static SessionManager newInstance(String filename, String charset){
+		return newInstance(filename, charset, DEFAULT_EXPIRE);
 	}
 	
-	public static SessionManager newInstance(String filename, int expire){
+	public static SessionManager newInstance(String filename, String charset, int expire){
 		InputStream in = SessionManager.class.getClassLoader().getResourceAsStream(filename);
-		return newInstance(in, expire);
+		return newInstance(in, charset, expire);
 	}
 	
-	public static SessionManager newInstance(InputStream in, int expire){
+	public static SessionManager newInstance(InputStream in){
+		return newInstance(in, DEFAULT_CHARSET, DEFAULT_EXPIRE);
+	}
+	
+	public static SessionManager newInstance(InputStream in, String charset) {
+		return newInstance(in, charset, DEFAULT_EXPIRE);
+	}
+	
+	public static SessionManager newInstance(InputStream in, String charset, int expire){
 		SessionManager sm = new SessionManager();
-		sm.init(in, expire);
+		sm.init(in, charset, expire);
 		return sm;
 	}
 	
@@ -50,10 +59,10 @@ public class SessionManager {
 		this.expire = expire;
 	}
 	
-	private final void init(InputStream input, int expire) {
+	private final void init(InputStream input, String charset, int expire) {
 		this.setExpire(expire);
 		try {
-			template = SessionParser.parse(input);
+			template = SessionParser.parse(input, charset);
 			input.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
