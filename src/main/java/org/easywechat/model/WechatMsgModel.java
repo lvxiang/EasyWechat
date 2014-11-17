@@ -14,10 +14,10 @@ public class WechatMsgModel {
 	
 	public static final String EVENT_SUBSCRIBE   = "subscribe";
 	public static final String EVENT_UNSUBSCRIBE = "unsubscribe";
-	public static final String EVENT_SCAN        = "scan";
-	public static final String EVENT_LOCATION    = "location";
-	public static final String EVENT_CLICK       = "click";
-	public static final String EVENT_VIEW        = "view";
+	public static final String EVENT_SCAN        = "SCAN";
+	public static final String EVENT_LOCATION    = "LOCATION";
+	public static final String EVENT_CLICK       = "CLICK";
+	public static final String EVENT_VIEW        = "VIEW";
 	
 	protected String toUserName;
 	protected String fromUserName;
