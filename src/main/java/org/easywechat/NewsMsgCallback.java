@@ -4,6 +4,12 @@ import org.easywechat.WechatModelBuilder.NewsMsgBuilder;
 
 public abstract class NewsMsgCallback<T> {
 
-	public abstract void execute(NewsMsgBuilder builder, T obj);
+	/***
+	 * 
+	 * @param pos
+	 * @param builder
+	 * @param obj
+	 */
+	public abstract void execute(int pos, NewsMsgBuilder builder, T obj);
 	
 }

@@ -15,7 +15,7 @@ import org.easywechat.model.TextMsgModel;
 import org.easywechat.model.WechatMsgModel;
 
 /**
- * 类WechatModelBuilder.java的实现描述：TODO 类实现描述 
+ * 绫籛echatModelBuilder.java鐨勫疄鐜版弿杩帮細TODO 绫诲疄鐜版弿杩�
  * @author lvxiang Sep 22, 2014 7:50:24 PM
  */
 public class WechatModelBuilder {
@@ -110,8 +110,10 @@ public class WechatModelBuilder {
         }
         
         public <T> NewsMsgBuilder each(Collection<T> coll, NewsMsgCallback<? super T> callback) {
+        	int i = 0;
         	for(T t: coll) {
-        		callback.execute(this, t);
+        		callback.execute(i, this, t);
+        		i ++;
         	}
         	return this;
         }
