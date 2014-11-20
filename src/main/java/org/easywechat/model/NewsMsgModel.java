@@ -24,6 +24,14 @@ public class NewsMsgModel extends WechatMsgModel{
 		return this.articles.size();
 	}
 	
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
+
 	public class Article {
 		
 		private String title;
