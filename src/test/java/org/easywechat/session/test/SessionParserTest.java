@@ -5,8 +5,8 @@ import java.io.InputStream;
 
 import junit.framework.Assert;
 
-import org.easywechat.session.SessionParser;
-import org.easywechat.session.SessionTemplate;
+import org.dt.easywechat.session.SessionParser;
+import org.dt.easywechat.session.SessionTemplate;
 import org.junit.Test;
 
 

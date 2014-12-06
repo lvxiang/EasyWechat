@@ -1,9 +1,9 @@
-package org.easywechat.parser;
+package org.dt.easywechat.parser;
 
-import org.easywechat.model.EventMsgModel;
-import org.easywechat.model.EventMsgModel.EventType;
-import org.easywechat.model.WechatMsgModel;
-import org.easywechat.util.JsoupUtil;
+import org.dt.easywechat.model.EventMsgModel;
+import org.dt.easywechat.model.WechatMsgModel;
+import org.dt.easywechat.model.EventMsgModel.EventType;
+import org.dt.easywechat.util.JsoupUtil;
 import org.jsoup.nodes.Document;
 
 public class EventMsgParser implements MessageParser{

@@ -1,8 +1,8 @@
-package org.easywechat.parser;
+package org.dt.easywechat.parser;
 
-import org.easywechat.model.TextMsgModel;
-import org.easywechat.model.WechatMsgModel;
-import org.easywechat.util.JsoupUtil;
+import org.dt.easywechat.model.TextMsgModel;
+import org.dt.easywechat.model.WechatMsgModel;
+import org.dt.easywechat.util.JsoupUtil;
 import org.jsoup.nodes.Document;
 
 public class TextMsgParser implements MessageParser{

@@ -1,4 +1,4 @@
-package org.easywechat.model;
+package org.dt.easywechat.model;
 
 public class WechatMsgModel {
 	

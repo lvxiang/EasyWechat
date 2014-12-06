@@ -1,12 +1,12 @@
-package org.easywechat.util;
+package org.dt.easywechat.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.easywechat.model.WechatMsgModel;
-import org.easywechat.model.WechatMsgModel.MessageType;
+import org.dt.easywechat.model.WechatMsgModel;
+import org.dt.easywechat.model.WechatMsgModel.MessageType;
 
 public class WechatUtil {
 

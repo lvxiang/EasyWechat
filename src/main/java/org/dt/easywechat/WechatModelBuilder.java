@@ -5,14 +5,14 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Alibaba.com.
  */
-package org.easywechat;
+package org.dt.easywechat;
 
 import java.util.Collection;
 
-import org.easywechat.model.NewsMsgModel;
-import org.easywechat.model.NewsMsgModel.Article;
-import org.easywechat.model.TextMsgModel;
-import org.easywechat.model.WechatMsgModel;
+import org.dt.easywechat.model.NewsMsgModel;
+import org.dt.easywechat.model.TextMsgModel;
+import org.dt.easywechat.model.WechatMsgModel;
+import org.dt.easywechat.model.NewsMsgModel.Article;
 
 /**
  * 绫籛echatModelBuilder.java鐨勫疄鐜版弿杩帮細TODO 绫诲疄鐜版弿杩�

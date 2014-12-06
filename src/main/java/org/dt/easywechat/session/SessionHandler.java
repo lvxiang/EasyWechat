@@ -1,8 +1,8 @@
-package org.easywechat.session;
+package org.dt.easywechat.session;
 
 import java.util.Map;
 
-import org.easywechat.model.WechatMsgModel;
+import org.dt.easywechat.model.WechatMsgModel;
 
 public interface SessionHandler {
 

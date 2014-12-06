@@ -1,4 +1,4 @@
-package org.easywechat.session;
+package org.dt.easywechat.session;
 
 import java.util.HashMap;
 import java.util.Map;

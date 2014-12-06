@@ -1,4 +1,4 @@
-package org.easywechat.model;
+package org.dt.easywechat.model;
 
 import java.util.ArrayList;
 import java.util.List;

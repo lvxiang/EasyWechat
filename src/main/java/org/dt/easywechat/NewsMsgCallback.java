@@ -1,6 +1,6 @@
-package org.easywechat;
+package org.dt.easywechat;
 
-import org.easywechat.WechatModelBuilder.NewsMsgBuilder;
+import org.dt.easywechat.WechatModelBuilder.NewsMsgBuilder;
 
 public abstract class NewsMsgCallback<T> {
 

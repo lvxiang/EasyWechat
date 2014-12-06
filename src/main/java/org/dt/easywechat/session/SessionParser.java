@@ -1,4 +1,4 @@
-package org.easywechat.session;
+package org.dt.easywechat.session;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,13 +1,13 @@
-package org.easywechat.session;
+package org.dt.easywechat.session;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.easywechat.Wechat;
-import org.easywechat.model.EventMsgModel;
-import org.easywechat.model.TextMsgModel;
-import org.easywechat.model.WechatMsgModel;
+import org.dt.easywechat.Wechat;
+import org.dt.easywechat.model.EventMsgModel;
+import org.dt.easywechat.model.TextMsgModel;
+import org.dt.easywechat.model.WechatMsgModel;
 
 public class SessionModel implements Cloneable{
 	private String id;

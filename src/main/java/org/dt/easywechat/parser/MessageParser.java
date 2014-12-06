@@ -1,6 +1,6 @@
-package org.easywechat.parser;
+package org.dt.easywechat.parser;
 
-import org.easywechat.model.WechatMsgModel;
+import org.dt.easywechat.model.WechatMsgModel;
 import org.jsoup.nodes.Document;
 
 public interface MessageParser {

@@ -1,4 +1,4 @@
-package org.easywechat;
+package org.dt.easywechat;
 
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -7,9 +7,9 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-import org.easywechat.model.WechatMsgModel;
-import org.easywechat.parser.WechatMsgParser;
-import org.easywechat.session.SessionManager;
+import org.dt.easywechat.model.WechatMsgModel;
+import org.dt.easywechat.parser.WechatMsgParser;
+import org.dt.easywechat.session.SessionManager;
 
 public class Wechat {
 

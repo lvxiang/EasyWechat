@@ -1,4 +1,4 @@
-package org.easywechat.parser;
+package org.dt.easywechat.parser;
 
 public class WechatMsgTags {
 

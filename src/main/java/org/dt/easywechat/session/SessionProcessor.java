@@ -1,13 +1,13 @@
-package org.easywechat.session;
+package org.dt.easywechat.session;
 
 
 import java.util.HashMap;
 
-import org.easywechat.Wechat;
-import org.easywechat.model.EventMsgModel;
-import org.easywechat.model.TextMsgModel;
-import org.easywechat.model.WechatMsgModel;
-import org.easywechat.session.SessionModel.Condition;
+import org.dt.easywechat.Wechat;
+import org.dt.easywechat.model.EventMsgModel;
+import org.dt.easywechat.model.TextMsgModel;
+import org.dt.easywechat.model.WechatMsgModel;
+import org.dt.easywechat.session.SessionModel.Condition;
 import org.jsoup.helper.StringUtil;
 
 public class SessionProcessor {

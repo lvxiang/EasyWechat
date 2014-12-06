@@ -1,12 +1,12 @@
-package org.easywechat.session;
+package org.dt.easywechat.session;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.easywechat.model.WechatMsgModel;
-import org.easywechat.session.SessionProcessor.SessionProcessResult;
+import org.dt.easywechat.model.WechatMsgModel;
+import org.dt.easywechat.session.SessionProcessor.SessionProcessResult;
 
 public class SessionManager {
 

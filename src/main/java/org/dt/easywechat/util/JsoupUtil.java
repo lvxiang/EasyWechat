@@ -1,4 +1,4 @@
-package org.easywechat.util;
+package org.dt.easywechat.util;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
