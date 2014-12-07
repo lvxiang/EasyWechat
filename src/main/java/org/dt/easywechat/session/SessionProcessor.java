@@ -57,7 +57,8 @@ public class SessionProcessor {
 				}
 			} else {
 				// 走mismatch流程
-				return new SessionProcessResult(session.getMismatch().getResult(), null);
+				if(session.getMismatch() != null)
+					return new SessionProcessResult(session.getMismatch().getResult(), null);
 			}
 		}
 		return null;
